@@ -7,17 +7,17 @@ export const Footer: React.FC = () => {
   const { user } = useAuth();
 
   return (
-    <footer className="relative isolate bg-[url('@/assets/bg3.png')] bg-cover bg-center text-white min-h-[360px] py-10 pt-18">
+    <footer className="relative isolate bg-[url('@/assets/bg3.png')] bg-cover bg-center text-white py-8">
       <div
-        className="absolute inset-0 -z-10 bg-gradient-to-b from-black/40 via-black/60 to-black/85"
+        className="absolute inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/60 to-black/85"
         aria-hidden="true"
       />
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 justify-items-center">
           <div className="flex flex-col justify-center items-center">
-            <Logo width="lg:w-32" styles="mb-8" />
+            <Logo width="w-28 lg:w-32" styles="mb-8" />
             <Link to={user ? "/movies" : "/login"}>
-              <Button variant="hero" styles="hover:text-black">
+              <Button variant="primary" styles="hover:text-black">
                 {user ? (
                   <p>
                     Hello,{" "}
@@ -106,7 +106,7 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
         </div>
-        <div className="mt-12 w-full border-t border-white/15 pt-4 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/60">
+        <div className="mt-8 w-full border-t border-white/15 pt-4 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/60">
           <p>© {new Date().getFullYear()} TMDB MovieApp. Juan Luis Rodriguez Chavarria.</p>
           <p className="tracking-widest uppercase text-[10px]">
             Explore • Discover • Enjoy

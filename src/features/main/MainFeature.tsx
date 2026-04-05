@@ -10,13 +10,11 @@ export default function Main() {
 
   return (
     <div className="relative flex flex-col items-center justify-start min-h-screen text-white">
-      {/* Navbar (hero mode) */}
       <Navbar logo={logoDark}/>
 
       {/* Overlay to improve text readability */}
       <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.2),rgba(0,0,0,0.1),rgba(0,0,0,0.01),rgba(0,0,0,0.01),rgba(0,0,0,0.9))]" aria-hidden="true" />
 
-      {/* Hero Content */}
       <div className="relative flex flex-col items-center text-center mt-22 px-4 max-w-3xl">
         <h1 className="font-light text-4xl sm:text-5xl md:text-7xl leading-tight">
           <span className="font-light">Millions of movies</span>
@@ -28,9 +26,9 @@ export default function Main() {
         </p>
         <div className="mt-10">
           {user ? (
-            <Button variant="hero" onClick={() => navigate("/movies")}>Explore Movies</Button>
+            <Button variant="secondary" onClick={() => navigate("/movies")}>Explore Movies</Button>
           ) : (
-            <Button variant="hero" onClick={() => navigate("/login")}>Start the Journey</Button>
+            <Button variant="primary" onClick={() => navigate("/login")}>Start the Journey</Button>
           )}
         </div>
       </div>

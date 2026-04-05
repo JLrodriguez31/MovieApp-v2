@@ -55,7 +55,7 @@ const LoginPage = () => {
     setInfo(null);
     try {
       await loginWithGoogle();
-      navigate(PATHS.root);
+      navigate(PATHS.movies);
     } catch (err) {
       let message = "No se pudo iniciar sesión con Google.";
       if (err instanceof FirebaseError) message = err.message || message;

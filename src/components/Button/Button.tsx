@@ -27,14 +27,8 @@ export const Button: React.FC<ButtonProps> = ({
 
   const variantClasses: Record<string, string> = {
     primary:
-      "bg-gradient-to-r from-blue-950 to-purple-950 text-white hover:from-transparent hover:to-transparent hover:border-purple-900 border-purple-900 border",
+      "bg-white text-gray-800 shadow-lg shadow-black/30 hover:shadow-xl hover:bg-white/90 px-8 py-3 text-base font-medium  hover:scale-[1.12] transition-transform ease-in-out duration-300",
     secondary:
-      "bg-gradient-to-r from-pink-300 to-orange-200 text-white hover:from-transparent hover:to-transparent hover:border-purple-900 border-purple-900 ",
-    tertiary:
-      "bg-gradient-to-r from-[#90cea1] to-[#01b4e4] font-bold text-lg text-white rounded-full hover:text-black",
-    quaternary:
-      "bg-gradient-to-r from-[#90cea1] to-[#01b4e4] text-white hover:from-transparent hover:to-transparent hover:border-cyan-300 border-[#0d253f] border",
-    hero:
       "bg-white text-gray-800 shadow-lg shadow-black/30 hover:shadow-xl hover:bg-white/90 px-8 py-3 text-base font-medium  hover:scale-[1.12] transition-transform ease-in-out duration-300",
   };
 
