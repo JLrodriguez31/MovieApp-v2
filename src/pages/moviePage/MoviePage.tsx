@@ -55,7 +55,7 @@ export default function MoviePage() {
         </div>
         {/* subtle vignette */}
         
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:mx-16 mx-6 gap-6 mt-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 md:mx-16 mx-6 gap-6 mt-8">
           {data?.pages.map((page) =>
             page.results.map((movie: Movie, idx: number) => (
               <FadeInOnScroll key={movie.id} delayMs={(idx % 10) * 50}>

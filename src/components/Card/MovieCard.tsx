@@ -14,9 +14,9 @@ export default function MovieCard({ movie }: MovieCardProps) {
     : "";
 
   return (
-    <Link to={`/movie/${movie.id}`} className="block">
+    <Link to={`/movie/${movie.id}`} className="block w-full">
       <div
-        className="group relative w-full h-[400px] lg:h-[479px] rounded-[1.5em] overflow-hidden shadow-2xl flex flex-col p-6"
+        className="group relative w-full h-[270px] sm:h-[360px] lg:h-[479px] rounded-[1.25em] sm:rounded-[1.5em] overflow-hidden shadow-2xl flex flex-col p-3 sm:p-6"
         style={
           imageUrl
             ? {
@@ -31,7 +31,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
         <div className="absolute inset-0 transition-colors bg-gradient-to-b from-black/5 via-black/10 to-black/70 duration-300 group-hover:bg-[#111111]/35" />
 
         {/* Subtle bottom gradient for readability */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 sm:h-40 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
         {/* Rating badge */}
         {typeof movie.vote_average === "number" && (
@@ -49,7 +49,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
         <div className="relative z-[2] mt-auto">
           <div className="text-white flex flex-col gap-1">
             <h3
-              className="text-lg md:text-xl font-semibold tracking-wide text-white"
+              className="text-base sm:text-lg md:text-xl font-semibold tracking-wide text-white"
               style={{
                 display: "-webkit-box",
                 WebkitBoxOrient: "vertical",
@@ -62,13 +62,13 @@ export default function MovieCard({ movie }: MovieCardProps) {
               {movie.title}
             </h3>
             {year && (
-              <p className="text-xs md:text-sm font-semibold opacity-90">
+              <p className="text-[11px] sm:text-xs md:text-sm font-semibold opacity-90">
                 {year}
               </p>
             )}
           </div>
           {movie.overview && (
-            <p className="mt-2 text-sm text-white/90 max-h-0 overflow-hidden transition-[max-height] duration-500 ease-out group-hover:max-h-28">
+            <p className="mt-1 sm:mt-2 text-[11px] sm:text-sm text-white/90 leading-[1.3] max-h-[0em] sm:max-h-0 overflow-hidden transition-[max-height] duration-500 ease-out sm:group-hover:max-h-28">
               {movie.overview}
             </p>
           )}
