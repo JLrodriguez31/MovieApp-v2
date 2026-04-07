@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-import { Music2, X } from "lucide-react";
+import { AudioLines, Pause, Play, SkipForward, X } from "lucide-react";
 import lofi1 from "@/assets/audio/lofi1.mp3";
-import lofi2 from "@/assets/audio/lofi2.mp3";
-import lofi3 from "@/assets/audio/lofi3.mp3";
+import lofi2 from "@/assets/audio/lofinastel.mp3";
+import lofi3 from "@/assets/audio/Lofidreams.mp3";
 import lofi4 from "@/assets/audio/lofi4.mp3";
 
 const TRACKS = [
-  { title: "Lofi 1", src: lofi1 },
-  { title: "Lofi 2", src: lofi2 },
-  { title: "Lofi 3", src: lofi3 },
-  { title: "Lofi 4", src: lofi4 },
+  { title: "FASSounds", src: lofi1 },
+  { title: "NastelBom", src: lofi2},
+  { title: "Lofidreams", src: lofi3 },
+  { title: "NastelBom", src: lofi4 },
 ];
 
 export default function LofiChillPlayer() {
@@ -17,7 +17,7 @@ export default function LofiChillPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(32);
   const [trackIndex, setTrackIndex] = useState(0);
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   const togglePlayback = async () => {
     if (!audioRef.current) return;
@@ -53,7 +53,7 @@ export default function LofiChillPlayer() {
         setIsPlaying(true);
       } catch (error) {
         console.error("Audio playback blocked:", error);
-        setIsPlaying(false);
+        setIsPlaying(false); 
       }
     }, 0);
   };
@@ -92,24 +92,26 @@ export default function LofiChillPlayer() {
         type="button"
         aria-label="Open music player"
         onClick={() => setIsCollapsed(false)}
-        className={`fixed bottom-5 right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-amber-200/40 bg-[#0a0d14]/85 text-amber-100 shadow-xl backdrop-blur-md transition-all duration-300 ease-out hover:bg-amber-300/15 ${
+        className={`fixed bottom-8 right-8 z-50 cursor-pointer flex h-12 w-12 items-center justify-center rounded-full border border-amber-200/40 bg-[#0a0d14]/85 text-amber-100 shadow-xl backdrop-blur-md transition-all duration-300 ease-out hover:bg-amber-300/15 ${
           isCollapsed
             ? "translate-y-0 scale-100 opacity-100"
             : "pointer-events-none translate-y-3 scale-75 opacity-0"
         }`}
       >
-        <Music2 size={20} className={isPlaying ? "animate-pulse" : ""} />
+        <AudioLines size={20} className={isPlaying ? "animate-pulse" : ""} />
       </button>
 
       <div
-        className={`fixed bottom-5 right-4 z-50 w-56 rounded-2xl border border-amber-200/30 bg-[#0a0d14]/80 p-3 text-white shadow-xl backdrop-blur-md transition-all duration-300 ease-out ${
+        className={`fixed bottom-5 right-4 z-50 w-64 rounded-2xl border border-amber-200/30 bg-gradient-to-br from-[#111827]/90 via-[#0b1220]/90 to-[#0a0d14]/90 p-3 text-white shadow-xl backdrop-blur-md transition-all duration-300 ease-out ${
           isCollapsed
             ? "pointer-events-none translate-y-4 scale-95 opacity-0"
             : "translate-y-0 scale-100 opacity-100"
         }`}
       >
         <div className="flex items-center justify-between">
-          <p className="text-[11px] uppercase tracking-[0.18em] text-amber-200/80">Music</p>
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.2em] text-amber-200/80">Music</p>
+          </div>
           <button
             type="button"
             aria-label="Minimize music player"
@@ -120,29 +122,38 @@ export default function LofiChillPlayer() {
           </button>
         </div>
 
-        <div className="mt-2 flex items-center gap-2">
+        <div className="mt-3 rounded-xl border border-amber-200/20 bg-white/[0.04] p-2.5">
+          <p className="text-[10px] uppercase tracking-[0.16em] text-white/55">Now Playing</p>
+          <p className="mt-1 truncate text-sm font-medium text-amber-100/90">{currentTrack.title}</p>
+        </div>
+
+        <div className="mt-3 flex items-center justify-center gap-2">
           <button
             type="button"
             onClick={togglePlayback}
-            className="rounded-lg border border-amber-200/45 bg-amber-300/15 px-3 py-1.5 text-xs font-semibold text-amber-100 transition hover:bg-amber-300/25"
+            aria-label={isPlaying ? "Pause music" : "Play music"}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-amber-200/45 bg-amber-300/15 text-amber-100 transition hover:bg-amber-300/25"
           >
-            {isPlaying ? "Pause" : "Play"}
+            {isPlaying ? <Pause size={16} /> : <Play size={16} className="translate-x-[1px]" />}
           </button>
           <button
             type="button"
             onClick={nextTrack}
             disabled={TRACKS.length < 2}
-            className="rounded-lg border border-white/20 bg-white/10 px-2.5 py-1.5 text-xs text-white/80 transition hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-40"
+            aria-label="Next track"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white/80 transition hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-40"
           >
-            Next
+            <SkipForward size={16} />
           </button>
-          <span className="text-xs text-white/75">{isPlaying ? "Ambient ON" : "Ambient OFF"}</span>
         </div>
-        <p className="mt-2 truncate text-xs text-amber-100/80">{currentTrack.title}</p>
 
-        <label className="mt-3 block text-xs text-white/80" htmlFor="lofi-volume">
-          Volume
-        </label>
+        <div className="mt-3 border-t border-white/10 pt-3">
+          <div className="flex items-center justify-between">
+            <label className="text-xs text-white/80" htmlFor="lofi-volume">
+              Volume
+            </label>
+            <span className="text-xs text-amber-100/85">{volume}%</span>
+          </div>
         <input
           id="lofi-volume"
           type="range"
@@ -152,6 +163,7 @@ export default function LofiChillPlayer() {
           onChange={(event) => setVolume(Number(event.target.value))}
           className="mt-1 w-full accent-amber-300"
         />
+        </div>
       </div>
     </>
   );

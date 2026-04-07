@@ -1,4 +1,4 @@
-import logo from "../../assets/white-logo.svg";
+import logo from "../../assets/logoicon.png";
 import { useNavigate } from "react-router-dom";
 
 interface LogoProps {

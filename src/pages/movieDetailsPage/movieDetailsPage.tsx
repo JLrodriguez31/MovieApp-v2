@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { fetchMovieDetails } from "@/config/tmdb";
 import Navbar from "@/features/header/components/navbar/Navbar";
-import logo2 from "@/assets/white-logo.svg";
 import cardPlaceholder from "@/assets/card-placeholder.svg";
 import { Bookmark } from "lucide-react";
 import { List } from "lucide-react";
@@ -71,7 +70,7 @@ export default function MovieDetailsPage() {
   if (loading)
     return (
       <div className="min-h-screen bg-[#050608] text-white">
-        <Navbar logo={logo2} />
+        <Navbar />
         <div className="relative flex items-center justify-center px-6 py-24">
           <div className="absolute -left-16 top-20 h-48 w-48 rounded-full bg-amber-400/20 blur-3xl" />
           <div className="absolute -right-12 bottom-20 h-56 w-56 rounded-full bg-sky-300/15 blur-3xl" />
@@ -85,7 +84,7 @@ export default function MovieDetailsPage() {
   if (!movie)
     return (
       <div className="min-h-screen bg-[#050608] text-white">
-        <Navbar logo={logo2} />
+        <Navbar />
         <div className="flex min-h-[80vh] items-center justify-center px-6">
           <div className="rounded-2xl border border-red-300/40 bg-red-400/10 px-8 py-6 text-center">
             <p className="text-xl font-semibold">Movie not found</p>
@@ -144,9 +143,9 @@ export default function MovieDetailsPage() {
         aria-hidden="true"
       />
 
-      <Navbar logo={logo2} />
+      <Navbar />
       <div className="relative mx-auto max-w-7xl px-4 pb-10 pt-8 sm:px-6 lg:px-8 lg:pb-16">
-        <div className="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-2xl backdrop-blur-md sm:p-8 lg:p-10">
+        <div className="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-2xl backdrop-blur-md sm:px-8 lg:px-10 py-8">
           <div className="grid gap-8 sm:gap-12 sm:grid-cols-[280px_minmax(0,1fr)] xl:grid-cols-[300px_minmax(0,1fr)]">
             <aside className="lg:sticky lg:top-28 lg:self-start">
               <div className="overflow-hidden rounded-2xl m-auto max-w-[300px] md:w-80 border border-white/20 bg-black/40 shadow-xl">
@@ -298,13 +297,14 @@ export default function MovieDetailsPage() {
                   </p>
                 </div>
               </section>
-              <section className="rounded-2xl  py-5 ">
+              <section className="rounded-2xl  pt-5 ">
                 <div className="flex justify-between flex-wrap items-center mb-4 gap-2">
                   <h2 className="text-xl sm:text-2xl font-semibold">
                     Top Billed Cast
                   </h2>
                   <p className="text-[11px] sm:text-xs uppercase tracking-[0.18em] text-amber-200/80">
-                    Top {Math.min(movie.credits?.cast?.length || 0, 10)} cast members
+                    Top {Math.min(movie.credits?.cast?.length || 0, 10)} cast
+                    members
                   </p>
                 </div>
                 <div

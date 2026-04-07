@@ -6,7 +6,6 @@ import FadeInOnScroll from "../../components/animations/FadeInOnScroll";
 import { useEffect, useRef } from "react";
 import type { Movie } from "../../types/movieTypes";
 import Navbar from "../../features/header/components/navbar/Navbar";
-import logo2 from "../../assets/white-logo.svg";
 
 export default function MoviePage() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
@@ -29,7 +28,7 @@ export default function MoviePage() {
           fetchNextPage();
         }
       },
-      { threshold: 1 }
+      { threshold: 1 },
     );
 
     const currentRef = loadMoreRef.current;
@@ -43,7 +42,7 @@ export default function MoviePage() {
   return (
     <>
       <div className="bg-[url('@/assets/bg-mj.png')] bg-cover bg-center h-full bg-fixed bg-no-repeat">
-        <Navbar logo={logo2} />
+        <Navbar />
         {/* Page header */}
         <div className="md:mx-16 mx-6 flex justify-center flex-col items-center">
           <h1 className="text-3xl md:text-5xl pb-4 font-semibold bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
@@ -53,14 +52,14 @@ export default function MoviePage() {
             Explore the trends and hits of the moment. Enjoy the best cinema.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 md:mx-16 mx-6 gap-6 mt-4">
           {data?.pages.map((page) =>
             page.results.map((movie: Movie, idx: number) => (
               <FadeInOnScroll key={movie.id} delayMs={(idx % 10) * 50}>
                 <MovieCard movie={movie} />
               </FadeInOnScroll>
-            ))
+            )),
           )}
           <div ref={loadMoreRef} className="h-10 col-span-full" />
           {isFetchingNextPage && (

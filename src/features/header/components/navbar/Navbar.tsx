@@ -3,13 +3,13 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../../../../auth/hooks/useAuth";
 import { auth } from "../../../../auth/firebase";
 import { signOut } from "firebase/auth";
+import logo from "@/assets/logoicon.png";
 
 interface NavbarProps {
-  logo: string;
   bgColor?: string;
 }
 
-export default function Navbar({ logo, bgColor }: NavbarProps) {
+export default function Navbar({ bgColor }: NavbarProps) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const { user } = useAuth();
@@ -53,18 +53,30 @@ export default function Navbar({ logo, bgColor }: NavbarProps) {
   };
 
   return (
-    <nav className={`w-full z-40 text-white ${bgColor} font-medium tracking-wide`}>
+    <nav
+      className={`w-full z-40 text-white ${bgColor} font-medium tracking-wide`}
+    >
       <div className="relative w-full py-6 px-6 sm:px-10 lg:px-14">
         <div className="hidden md:grid grid-cols-5 items-center mx-auto w-full">
           <div className="flex justify-center">
-            <button onClick={() => handleNav("/movies")} className={heroLinkBase}>
-              <span className="group-hover:text-white/80 cursor-pointer">MOVIES</span>
+            <button
+              onClick={() => handleNav("/movies")}
+              className={heroLinkBase}
+            >
+              <span className="group-hover:text-white/80 cursor-pointer">
+                MOVIES
+              </span>
               <span className={heroUnderline} />
             </button>
           </div>
           <div className="flex justify-center">
-            <button onClick={() => handleNav("/movies")} className={heroLinkBase}>
-              <span className="group-hover:text-white/80 cursor-pointer">TV SHOWS</span>
+            <button
+              onClick={() => handleNav("/movies")}
+              className={heroLinkBase}
+            >
+              <span className="group-hover:text-white/80 cursor-pointer">
+                TV SHOWS
+              </span>
               <span className={heroUnderline} />
             </button>
           </div>
@@ -76,29 +88,41 @@ export default function Navbar({ logo, bgColor }: NavbarProps) {
               <img
                 src={logo}
                 alt="Logo"
-                className="w-18 lg:w-26 h-auto drop-shadow-[0_0_10px_rgba(0,0,0,0.35)] hover:scale-[1.1] transition-transform ease-in-out duration-500"
+                className="w-28 lg:w-40 h-auto drop-shadow-[0_0_10px_rgba(0,0,0,0.35)] hover:scale-[1.1] transition-transform ease-in-out duration-500"
               />
             </button>
           </div>
           <div className="flex justify-center">
-            <button onClick={() => handleNav("/movies")} className={heroLinkBase}>
-              <span className="group-hover:text-white/80 cursor-pointer">ACTORS</span>
+            <button
+              onClick={() => handleNav("/movies")}
+              className={heroLinkBase}
+            >
+              <span className="group-hover:text-white/80 cursor-pointer">
+                ACTORS
+              </span>
               <span className={heroUnderline} />
             </button>
           </div>
-            <div className="flex justify-center">
-              {user ? (
-                <button onClick={handleLogout} className={heroLinkBase}>
-                  <span className="group-hover:text-white/80 cursor-pointer">LOGOUT</span>
-                  <span className={heroUnderline} />
-                </button>
-              ) : (
-                <button onClick={() => handleNav("/register")} className={heroLinkBase}>
-                  <span className="group-hover:text-white/80 cursor-pointer">REGISTER</span>
-                  <span className={heroUnderline} />
-                </button>
-              )}
-            </div>
+          <div className="flex justify-center">
+            {user ? (
+              <button onClick={handleLogout} className={heroLinkBase}>
+                <span className="group-hover:text-white/80 cursor-pointer">
+                  LOGOUT
+                </span>
+                <span className={heroUnderline} />
+              </button>
+            ) : (
+              <button
+                onClick={() => handleNav("/register")}
+                className={heroLinkBase}
+              >
+                <span className="group-hover:text-white/80 cursor-pointer">
+                  REGISTER
+                </span>
+                <span className={heroUnderline} />
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Mobile / small screens (under md) */}
@@ -108,7 +132,7 @@ export default function Navbar({ logo, bgColor }: NavbarProps) {
             aria-label="Toggle navigation menu"
             aria-expanded={open}
             className="flex flex-col w-9 h-9 items-center justify-center gap-[6px] group"
-            onClick={() => setOpen(o => !o)}
+            onClick={() => setOpen((o) => !o)}
           >
             <span
               className={`h-0.5 w-7 bg-white transition-all duration-300 origin-left ${
@@ -127,8 +151,8 @@ export default function Navbar({ logo, bgColor }: NavbarProps) {
             />
           </button>
           {/* Logo */}
-          <button onClick={() => handleNav("/")}> 
-            <img src={logo} alt="Logo" className="w-18 h-auto" />
+          <button onClick={() => handleNav("/")}>
+            <img src={logo} alt="Logo" className="w-28 h-auto" />
           </button>
           {/* Placeholder to keep symmetry with hamburger width */}
           <div className="w-9" />
@@ -137,7 +161,9 @@ export default function Navbar({ logo, bgColor }: NavbarProps) {
         {/* Mobile fullscreen menu */}
         <div
           className={`md:hidden fixed inset-0 z-30 bg-black/60 backdrop-blur-md transition-opacity duration-300 ${
-            open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+            open
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
           }`}
           aria-hidden={!open}
         >
@@ -150,7 +176,7 @@ export default function Navbar({ logo, bgColor }: NavbarProps) {
               <img
                 src={logo}
                 alt="Logo"
-                className="w-18 cursor-pointer"
+                className="w-20 cursor-pointer"
                 onClick={() => handleNav("/")}
               />
               <button
@@ -175,7 +201,7 @@ export default function Navbar({ logo, bgColor }: NavbarProps) {
               </button>
             </div>
             <ul className="mt-2 flex flex-col gap-2 px-4">
-              {baseLinks.map(l => (
+              {baseLinks.map((l) => (
                 <li key={l.label}>
                   <button
                     onClick={() => handleNav(l.to)}
@@ -208,8 +234,6 @@ export default function Navbar({ logo, bgColor }: NavbarProps) {
             </div>
           </div>
         </div>
-
-       
       </div>
     </nav>
   );
