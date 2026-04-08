@@ -4,7 +4,7 @@
 	<h3>Explore movies, actors and details in a diferent and unique way.</h3>
 
 	
-![Technologie Icons](https://skillicons.dev/icons?i=html,css,tailwind,typescript,react,jest,firebase,nodejs,vite,figma,github "Technologie Icons")
+![Technologie Icons](https://skillicons.dev/icons?i=html,css,tailwind,typescript,react,jest,firebase,nodejs,vite,figma,github,git "Technologie Icons")
 
 </div>
 
